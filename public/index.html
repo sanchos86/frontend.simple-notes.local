@@ -13,5 +13,10 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <% if (htmlWebpackPlugin.options.appConfig) { %>
+      <script id="app-config" type="application/json">
+        <%= htmlWebpackPlugin.options.appConfig %>
+      </script>
+    <% } %>
   </body>
 </html>
