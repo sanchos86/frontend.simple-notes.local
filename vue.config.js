@@ -2,6 +2,7 @@ const appConfig = require('./config/config');
 
 module.exports = {
   lintOnSave: false,
+
   devServer: {
     progress: false,
     proxy: {
@@ -10,6 +11,7 @@ module.exports = {
       },
     },
   },
+
   chainWebpack(config) {
     config
       .plugin('html')
@@ -21,4 +23,8 @@ module.exports = {
         return args;
       });
   },
+
+  transpileDependencies: [
+    'vuetify',
+  ],
 };

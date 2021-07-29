@@ -15,7 +15,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-empty': ['error', { allowEmptyCatch: true }],
     // vue specific rules
-    'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }]
+    'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }],
   },
   overrides: [
     {
@@ -29,11 +29,11 @@ module.exports = {
     },
     {
       files: [
-        '*.vue'
+        '*.vue',
       ],
       rules: {
         indent: 'off',
-      }
-    }
+      },
+    },
   ],
 };
