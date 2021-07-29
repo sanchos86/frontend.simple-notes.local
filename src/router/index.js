@@ -1,15 +1,31 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
-import Home from '@/views/Home.vue';
+import NotesView from '@/views/NotesView.vue';
+import CategoriesView from '@/views/CategoriesView.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    redirect: { name: 'notes' },
+  },
+  {
+    path: '/notes',
+    name: 'notes',
+    component: NotesView,
+    meta: {
+      title: 'Notes',
+    },
+  },
+  {
+    path: '/categories',
+    name: 'categories',
+    component: CategoriesView,
+    meta: {
+      title: 'Categories',
+    },
   },
 ];
 
@@ -20,7 +36,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || store.state.appConfig.title;
+  document.title = to.meta?.title || store.state.appConfig.title;
   next();
 });
 
