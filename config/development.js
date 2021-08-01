@@ -1,4 +1,4 @@
 module.exports = {
-  axiosBaseUrl: '/',
+  axiosMainBaseUrl: '/',
   proxy: 'http://api.simple-notes.ru',
 };
