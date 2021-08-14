@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <AlertManager />
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -42,7 +43,13 @@
 <script>
   import menu from '@/utils/menu';
 
+  import AlertManager from '@/components/shared/AlertManager.vue';
+
   export default {
+    components: {
+      AlertManager,
+    },
+
     data() {
       return {
         menu,

@@ -2,7 +2,6 @@ import Vue from 'vue';
 import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
-import mutationTypes from '@/store/mutationTypes';
 import vuetify from '@/plugins/vuetify';
 
 Vue.config.productionTip = false;
@@ -17,7 +16,7 @@ if (appConfigEl) {
   appConfigEl.parentNode.removeChild(appConfigEl);
 }
 
-store.commit(mutationTypes.SET_APP_CONFIG, appConfig);
+store.commit('setAppConfig', appConfig);
 
 new Vue({
   router,

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import mutationTypes from '@/store/mutationTypes';
+import alerts from '@/store/modules/alerts';
 
 Vue.use(Vuex);
 
@@ -10,12 +10,13 @@ export default new Vuex.Store({
     appConfig: {},
   },
   mutations: {
-    [mutationTypes.SET_APP_CONFIG](state, appConfig = {}) {
+    setAppConfig: (state, appConfig = {}) => {
       state.appConfig = appConfig;
     },
   },
   actions: {
   },
   modules: {
+    alerts,
   },
 });

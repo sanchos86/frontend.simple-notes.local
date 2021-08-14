@@ -1,0 +1,7 @@
+$z-index: 10;
+
+$z-indices: ();
+
+@for $i from 1 through 25 {
+  $z-indices: map_merge($z-indices, ($i: $i * $z-index));
+}
