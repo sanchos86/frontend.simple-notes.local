@@ -5,6 +5,7 @@ import { VAlert } from 'vuetify/lib/components';
 
 import alertTypes from '@/constants/alertTypes';
 import Alert from '@/models/Alert';
+import test from '@/directives/test';
 import AlertItem from '@/components/shared/AlertItem.vue';
 
 describe('AlertItem.vue', () => {
@@ -17,6 +18,9 @@ describe('AlertItem.vue', () => {
     vuetify,
     propsData: {
       alert,
+    },
+    directives: {
+      test,
     },
   });
 

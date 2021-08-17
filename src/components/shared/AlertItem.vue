@@ -7,16 +7,16 @@
     @input="removeAlert"
   >
     <span
+      v-test="{ id: 'alert-item__title'}"
       class="alert-item__title"
-      data-test-id="alert-item__title"
     >
       {{ alert.title }}
     </span>
     <template v-if="alert.details">
       <br>
       <span
+        v-test="{ id: 'alert-item__details' }"
         class="alert-item__details"
-        data-test-id="alert-item__details"
       >
         {{ alert.details }}
       </span>
