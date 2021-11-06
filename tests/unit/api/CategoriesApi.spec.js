@@ -1,5 +1,3 @@
-import faker from 'faker';
-
 import { CategoriesApi } from '@/api/CategoriesApi';
 import mainHttpClient from '@/http/main/MainHttpClient';
 
@@ -25,7 +23,7 @@ describe('CategoriesApi.js', () => {
 
   it('if addCategory method is called, then httpClient post method should be called with expected url and payload', async () => {
     const url = '/api/categories';
-    const payload = { name: faker.lorem.word() };
+    const payload = { name: 'Hello, world!' };
     const spy = jest.spyOn(mainHttpClient, 'post').mockImplementation(() => Promise.resolve());
     await categoriesApi.addCategory(payload);
     expect(spy).toHaveBeenCalled();
@@ -34,7 +32,7 @@ describe('CategoriesApi.js', () => {
   });
 
   it('if deleteCategory method is called, then httpClient delete method should be called with expected url', async () => {
-    const categoryId = faker.datatype.number();
+    const categoryId = 1;
     const url = `/api/categories/${categoryId}`;
     const spy = jest.spyOn(mainHttpClient, 'delete').mockImplementation(() => Promise.resolve());
     await categoriesApi.deleteCategory(categoryId);

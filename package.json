@@ -8,6 +8,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
+    "lint:no-fix": "vue-cli-service lint --no-fix",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

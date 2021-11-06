@@ -6,7 +6,7 @@ export default class Category {
    *
    * @param {CategoryData} category
    */
-  constructor(category) {
+  constructor(category = {}) {
     this.id = category.id;
     this.name = category.name;
   }

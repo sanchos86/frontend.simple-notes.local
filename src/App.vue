@@ -35,7 +35,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-spacer></v-spacer>
+      <v-spacer />
     </v-app-bar>
   </v-app>
 </template>
