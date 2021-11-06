@@ -1,0 +1,40 @@
+image: node:14
+
+stages:
+  - lint
+  - test
+  - build
+  - deploy
+
+lint:no-fix:
+  stage: lint
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  script:
+    - npm run lint:no-fix
+
+test:unit:
+  stage: test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  script:
+    - npm run test:unit
+
+build:
+  stage: build
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist
+
+deploy:
+  stage: deploy
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
+  script:
+    - ls la
