@@ -5,11 +5,6 @@ module.exports = {
 
   devServer: {
     progress: false,
-    proxy: {
-      '/api': {
-        target: appConfig.proxy,
-      },
-    },
   },
 
   chainWebpack(config) {

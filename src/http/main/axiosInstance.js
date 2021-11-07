@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-import store from '@/store';
 import contentTypes from '@/constants/contentTypes';
 
 const instance = axios.create({
-  baseURL: store.state.appConfig.axiosMainBaseUrl,
+  baseURL: process.env.VUE_APP_AXIOS_BASE_URL,
   headers: {
     'Content-Type': contentTypes.APPLICATION_JSON,
     'X-Requested-With': 'XMLHttpRequest',
