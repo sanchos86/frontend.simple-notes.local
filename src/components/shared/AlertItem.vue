@@ -1,7 +1,7 @@
 <template>
   <v-alert
     class="alert-item"
-    :type="alert.type"
+    :type="alert.alertType"
     :icon="false"
     dismissible
     @input="removeAlert"
