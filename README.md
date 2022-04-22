@@ -1,1 +1,1 @@
-# frontend.simple-notes.ru
+# frontend.simple-notes.local
