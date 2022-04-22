@@ -1,0 +1,4 @@
+export default {
+  UNKNOWN: 'UNKNOWN',
+  DELETE_CATEGORY: 'DELETE_CATEGORY',
+};

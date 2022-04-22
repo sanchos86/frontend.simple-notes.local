@@ -53,7 +53,7 @@
     data() {
       return {
         menu,
-        drawer: false,
+        drawer: true,
       };
     },
   };
