@@ -6,17 +6,17 @@ export class CategoriesApi {
   }
 
   getCategories() {
-    const url = 'api/categories';
+    const url = '/api/categories';
     return this.httpClient.get(url);
   }
 
   addCategory(payload) {
-    const url = 'api/categories';
+    const url = '/api/categories';
     return this.httpClient.post(url, payload);
   }
 
   deleteCategory(categoryId) {
-    const url = `api/categories/${categoryId}`;
+    const url = `/api/categories/${categoryId}`;
     return this.httpClient.delete(url);
   }
 }
