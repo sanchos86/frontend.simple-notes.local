@@ -14,4 +14,8 @@ export default class Category {
   static getPayloadToAddCategory({ name }) {
     return { name };
   }
+
+  static getPayloadToEditCategory({ name }) {
+    return { name };
+  }
 }

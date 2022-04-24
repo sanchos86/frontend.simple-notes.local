@@ -51,7 +51,7 @@ export class AlertService {
    * @param {string} [details]
    */
   addInfoAlert(code, details) {
-    const title = this.translationService.getErrorMessage(code);
+    const title = this.translationService.getInfoMessage(code);
     const alert = new Alert(alertTypes.INFO_ALERT, title, details);
     this.addAlert(alert);
   }

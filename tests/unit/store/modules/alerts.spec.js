@@ -1,6 +1,5 @@
 import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import faker from 'faker';
 import cloneDeep from 'lodash.clonedeep';
 
 import alerts, { getDefaultState } from '@/store/modules/alerts';
@@ -8,8 +7,8 @@ import alertTypes from '@/constants/alertTypes';
 import Alert from '@/models/Alert';
 
 const createAlert = (alertType) => {
-  const title = faker.lorem.sentence();
-  const details = faker.lorem.sentence();
+  const title = `Fake alert title with type ${alertType}`;
+  const details = `Fake alert details with type ${alertType}`;
   return new Alert(alertType, title, details);
 };
 
@@ -39,7 +38,7 @@ describe('alerts.js', () => {
   });
 
   it('removeAlert mutation should remove alert from store', () => {
-    const alert = createAlert(alertTypes.NOTIFICATION_ALERT);
+    const alert = createAlert(alertTypes.INFO_ALERT);
     store.commit('alerts/addAlert', alert);
     store.commit('alerts/removeAlert', alert);
     expect(store.state.alerts.alerts).toEqual([]);

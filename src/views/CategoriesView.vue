@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row>
+    <v-row align="center">
       <v-col cols="8">
         <h1>Categories</h1>
       </v-col>

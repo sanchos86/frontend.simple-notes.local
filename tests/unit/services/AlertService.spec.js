@@ -1,13 +1,18 @@
 import Vuex from 'vuex';
-import faker from 'faker';
 
 import alertTypes from '@/constants/alertTypes';
 import Alert from '@/models/Alert';
 import alertServiceInstance, { AlertService } from '@/services/AlertService';
+import { TranslationService } from '@/services/TranslationService';
+import successCodes from '@/constants/successCodes';
+import errorCodes from '@/constants/errorCodes';
+import infoCodes from '@/constants/infoCodes';
+
+jest.mock('@/services/TranslationService');
 
 const createAlert = (alertType) => {
-  const title = faker.lorem.sentence();
-  const details = faker.lorem.sentence();
+  const title = `Fake alert title with type ${alertType}`;
+  const details = `Fake alert details with type ${alertType}`;
   return new Alert(alertType, title, details);
 };
 
@@ -17,6 +22,7 @@ describe('AlertService.js', () => {
   let alertService;
   let addAlertSpy;
   let removeAlertSpy;
+  let translationService;
 
   beforeEach(() => {
     mutations = {
@@ -33,7 +39,8 @@ describe('AlertService.js', () => {
       },
     });
 
-    alertService = new AlertService(store);
+    translationService = new TranslationService();
+    alertService = new AlertService(store, translationService);
   });
 
   it('should check if alertServiceInstance is an instance of AlertService', () => {
@@ -71,46 +78,64 @@ describe('AlertService.js', () => {
   });
 
   it('should call addAlert method with success alert instance', () => {
-    const title = faker.lorem.sentence();
-    const details = faker.lorem.sentence();
+    const code = successCodes.EDIT_CATEGORY;
+    const title = 'Success alert title';
+    const details = 'Success alert details';
+    const alertType = alertTypes.SUCCESS_ALERT;
+    translationService.getSuccessMessage.mockReturnValue(title);
     addAlertSpy = jest.spyOn(alertService, 'addAlert').mockImplementation(() => {});
-    alertService.addSuccessAlert(title, details);
+    alertService.addSuccessAlert(code, details);
 
     expect(addAlertSpy).toHaveBeenCalled();
 
     const alert = addAlertSpy.mock.calls[0][0];
-    expect(alert).toBeInstanceOf(Alert);
-    expect(alert.alertType).toBe(alertTypes.SUCCESS_ALERT);
+    expect(alert).toEqual(expect.objectContaining({
+      title,
+      alertType,
+      details,
+    }));
 
     addAlertSpy.mockRestore();
   });
 
   it('should call addAlert method with error alert instance', () => {
-    const title = faker.lorem.sentence();
-    const details = faker.lorem.sentence();
+    const code = errorCodes.EDIT_CATEGORY;
+    const title = 'Error alert title';
+    const details = 'Error alert details';
+    const alertType = alertTypes.ERROR_ALERT;
+    translationService.getErrorMessage.mockReturnValue(title);
     addAlertSpy = jest.spyOn(alertService, 'addAlert').mockImplementation(() => {});
-    alertService.addErrorAlert(title, details);
+    alertService.addErrorAlert(code, details);
 
     expect(addAlertSpy).toHaveBeenCalled();
 
     const alert = addAlertSpy.mock.calls[0][0];
-    expect(alert).toBeInstanceOf(Alert);
-    expect(alert.alertType).toBe(alertTypes.ERROR_ALERT);
+    expect(alert).toEqual(expect.objectContaining({
+      title,
+      alertType,
+      details,
+    }));
 
     addAlertSpy.mockRestore();
   });
 
-  it('should call addAlert method with notification alert instance', () => {
-    const title = faker.lorem.sentence();
-    const details = faker.lorem.sentence();
+  it('should call addAlert method with info alert instance', () => {
+    const code = infoCodes.UNKNOWN;
+    const title = 'Info alert title';
+    const details = 'Info alert details';
+    const alertType = alertTypes.INFO_ALERT;
+    translationService.getInfoMessage.mockReturnValue(title);
     addAlertSpy = jest.spyOn(alertService, 'addAlert').mockImplementation(() => {});
-    alertService.addNotificationAlert(title, details);
+    alertService.addInfoAlert(code, details);
 
     expect(addAlertSpy).toHaveBeenCalled();
 
     const alert = addAlertSpy.mock.calls[0][0];
-    expect(alert).toBeInstanceOf(Alert);
-    expect(alert.alertType).toBe(alertTypes.NOTIFICATION_ALERT);
+    expect(alert).toEqual(expect.objectContaining({
+      title,
+      alertType,
+      details,
+    }));
 
     addAlertSpy.mockRestore();
   });

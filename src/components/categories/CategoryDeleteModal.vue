@@ -11,7 +11,7 @@
           small
           v-on="on"
         >
-          Delete
+          Delete category
         </v-btn>
       </template>
       <v-card>

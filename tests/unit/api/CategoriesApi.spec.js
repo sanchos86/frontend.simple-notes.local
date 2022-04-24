@@ -31,6 +31,17 @@ describe('CategoriesApi.js', () => {
     expect(spy).toHaveBeenCalledWith(url, payload);
   });
 
+  it('if editCategory method is called, then httpClient put method should be called with expected url and payload', async () => {
+    const categoryId = 1;
+    const url = `/api/categories/${categoryId}`;
+    const payload = { name: 'Random name to edit category' };
+    const spy = jest.spyOn(mainHttpClient, 'put').mockImplementation(() => Promise.resolve());
+    await categoriesApi.editCategory(categoryId, payload);
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(url, payload);
+  });
+
   it('if deleteCategory method is called, then httpClient delete method should be called with expected url', async () => {
     const categoryId = 1;
     const url = `/api/categories/${categoryId}`;

@@ -1,6 +1,5 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import faker from 'faker';
 
 import Alert from '@/models/Alert';
 import AlertManager from '@/components/shared/AlertManager.vue';
@@ -11,8 +10,8 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 const createAlert = (alertType) => {
-  const title = faker.lorem.sentence();
-  const details = faker.lorem.sentence();
+  const title = `Fake alert title with type ${alertType}`;
+  const details = `Fake alert details with type ${alertType}`;
   return new Alert(alertType, title, details);
 };
 

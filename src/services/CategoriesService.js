@@ -25,6 +25,13 @@ export class CategoriesService {
     this.store.commit('categories/addCategory', category);
   }
 
+  async editCategory(categoryId, editCategoryForm) {
+    const payload = Category.getPayloadToEditCategory(editCategoryForm);
+    let category = await this.categoriesApi.editCategory(categoryId, payload);
+    category = new Category(category);
+    this.store.commit('categories/editCategory', category);
+  }
+
   async deleteCategory(categoryId) {
     await this.categoriesApi.deleteCategory(categoryId);
     this.store.commit('categories/deleteCategory', categoryId);

@@ -1,18 +1,18 @@
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col cols="11">
+    <v-row align="center">
+      <v-col cols="8">
         <h1>Notes</h1>
       </v-col>
-      <v-col class="text-right">
+      <v-col
+        cols="4"
+        class="text-right"
+      >
         <v-btn
-          class="rounded-lg"
           color="primary"
           small
-          fab
-          tile
         >
-          <v-icon>{{ mdiPlus }}</v-icon>
+          <v-icon>{{ mdiPlus }}</v-icon>Add note
         </v-btn>
       </v-col>
     </v-row>

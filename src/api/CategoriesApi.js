@@ -15,6 +15,11 @@ export class CategoriesApi {
     return this.httpClient.post(url, payload);
   }
 
+  editCategory(categoryId, payload) {
+    const url = `/api/categories/${categoryId}`;
+    return this.httpClient.put(url, payload);
+  }
+
   deleteCategory(categoryId) {
     const url = `/api/categories/${categoryId}`;
     return this.httpClient.delete(url);
