@@ -10,6 +10,7 @@
       >
         <v-btn
           color="primary"
+          disabled
           small
         >
           <v-icon>{{ mdiPlus }}</v-icon>Add note

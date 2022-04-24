@@ -41,6 +41,12 @@ export class TranslationService {
     const normalizedCode = TranslationService.getNormalizedCode(prefix, code);
     return this.i18n.t(normalizedCode, values);
   }
+
+  getValidationMessage(code, values) {
+    const prefix = 'validationMessages';
+    const normalizedCode = TranslationService.getNormalizedCode(prefix, code);
+    return this.i18n.t(normalizedCode, values);
+  }
 }
 
 export default new TranslationService(i18n);

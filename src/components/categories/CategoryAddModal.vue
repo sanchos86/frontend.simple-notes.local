@@ -11,25 +11,24 @@
           small
           v-on="on"
         >
-          Edit category
+          <v-icon>{{ icons.mdiPlus }}</v-icon>Add category
         </v-btn>
       </template>
       <v-card>
-        <v-card-title>
-          Edit category <i class="text-decoration-underline">{{ category.name }}</i>
-        </v-card-title>
+        <v-card-title>Add category</v-card-title>
         <v-card-text>
           <form
-            id="editCategoryForm"
-            @submit.prevent="editCategory"
+            id="addCategoryForm"
+            @submit.prevent="addCategory"
           >
             <v-container class="pa-0">
               <v-row>
                 <v-col>
                   <v-text-field
-                    v-model="form.name"
+                    v-model="$v.form.name.$model"
                     label="Name"
                     placeholder="Enter at least two characters ..."
+                    :error-messages="$getValidationMessage($v.form.name)"
                   />
                 </v-col>
               </v-row>
@@ -48,12 +47,12 @@
           <v-btn
             type="submit"
             color="primary"
-            form="editCategoryForm"
+            form="addCategoryForm"
             small
-            :loading="loading.editCategory"
-            :disabled="!anyCategoryFieldChanged || (anyCategoryFieldChanged && isFormInvalid)"
+            :loading="loading.addCategory"
+            :disabled="isFormInvalid"
           >
-            Save
+            Add category
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -63,6 +62,7 @@
 
 <script>
   import { required, maxLength } from 'vuelidate/lib/validators';
+  import { mdiPlus } from '@mdi/js';
 
   import ValidationMixin from '@/mixins/ValidationMixin';
   import categoriesService from '@/services/CategoriesService';
@@ -71,25 +71,21 @@
   import successCodes from '@/constants/successCodes';
 
   export default {
-    name: 'CategoryEditModal',
+    name: 'CategoryAddModal',
 
     mixins: [ValidationMixin],
-
-    props: {
-      category: {
-        type: Object,
-        required: true,
-      },
-    },
 
     data() {
       return {
         isDialogOpened: false,
         loading: {
-          editCategory: false,
+          addCategory: false,
         },
         form: {
-          name: this.category?.name,
+          name: '',
+        },
+        icons: {
+          mdiPlus,
         },
       };
     },
@@ -106,26 +102,27 @@
     },
 
     computed: {
-      anyCategoryFieldChanged() {
-        return Object.entries(this.form).some(([key, value]) => this.category[key] !== value);
-      },
       isFormInvalid() {
         return this.$v.form.$invalid;
       },
     },
 
     methods: {
-      async editCategory() {
-        const { category: { id: categoryId }, form } = this;
-        try {
-          this.loading.editCategory = true;
-          await categoriesService.editCategory(categoryId, form);
-          alertService.addSuccessAlert(successCodes.EDIT_CATEGORY);
-          this.isDialogOpened = false;
-        } catch (e) {
-          alertService.addErrorAlert(errorCodes.EDIT_CATEGORY);
-        } finally {
-          this.loading.editCategory = false;
+      async addCategory() {
+        const { isFormInvalid, form } = this;
+        if (isFormInvalid) {
+          this.$v.form.$touch();
+        } else {
+          try {
+            this.loading.addCategory = true;
+            await categoriesService.addCategory(form);
+            alertService.addSuccessAlert(successCodes.ADD_CATEGORY);
+            this.isDialogOpened = false;
+          } catch (e) {
+            alertService.addErrorAlert(errorCodes.ADD_CATEGORY);
+          } finally {
+            this.loading.addCategory = false;
+          }
         }
       },
     },

@@ -8,12 +8,7 @@
         cols="4"
         class="text-right"
       >
-        <v-btn
-          color="primary"
-          small
-        >
-          <v-icon>{{ icons.mdiPlus }}</v-icon>Add category
-        </v-btn>
+        <CategoryAddModal />
       </v-col>
     </v-row>
     <v-row>
@@ -28,23 +23,21 @@
 </template>
 
 <script>
-  import { mdiPlus } from '@mdi/js';
   import { mapState } from 'vuex';
 
   import categoriesService from '@/services/CategoriesService';
 
   import CategoriesTable from '@/components/categories/CategoriesTable.vue';
+  import CategoryAddModal from '@/components/categories/CategoryAddModal.vue';
 
   export default {
     components: {
+      CategoryAddModal,
       CategoriesTable,
     },
 
     data() {
       return {
-        icons: {
-          mdiPlus,
-        },
         loading: {
           getCategories: true,
         },

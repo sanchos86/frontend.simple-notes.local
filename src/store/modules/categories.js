@@ -10,7 +10,7 @@ const mutations = {
     state.categories = categories;
   },
   addCategory(state, category) {
-    state.categories.push(category);
+    state.categories.unshift(category);
   },
   editCategory(state, category) {
     state.categories = state.categories.map((item) => {
